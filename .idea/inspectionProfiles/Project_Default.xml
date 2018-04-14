@@ -1,0 +1,17 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="str.loop_rule" />
+          <option value="str.url_rule" />
+          <option value="str.table_name" />
+          <option value="str.title_rule" />
+          <option value="str.content_rule" />
+          <option value="str.type_rule" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
