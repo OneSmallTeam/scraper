@@ -9,6 +9,7 @@ do
     scrapy crawl spider -a rule_id=${c} > log/${c}.log
 }&
 {
+    sleep 2s
     echo "Welcome $c times"
 }
 done
