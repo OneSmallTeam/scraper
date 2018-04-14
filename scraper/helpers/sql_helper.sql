@@ -14,11 +14,15 @@ CREATE TABLE IF NOT EXISTS _rule (
   url          VARCHAR(200) NOT NULL,
   table_name   VARCHAR(50)  NOT NULL,
 
-  loop_rule    VARCHAR(200)          DEFAULT '//null',
-  title_rule   VARCHAR(200)          DEFAULT '//null',
-  content_rule VARCHAR(200)          DEFAULT '//null',
-  url_rule     VARCHAR(200)          DEFAULT '//null',
-  type_rule    VARCHAR(200)          DEFAULT '//null',
+  loop_rule    VARCHAR(200)          DEFAULT 'null',
+  title_rule   VARCHAR(200)          DEFAULT 'null',
+  content_rule VARCHAR(200)          DEFAULT 'null',
+  url_rule     VARCHAR(200)          DEFAULT 'null',
+  type_rule    VARCHAR(200)          DEFAULT 'null',
+
+  content_url  VARCHAR(200)          DEFAULT 'null',
+  parse        INT                   DEFAULT 1,               #爬取所用parse
+  type         VARCHAR(50)           DEFAULT 'article',       #爬取的类型
 
   created      TIMESTAMP             DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),

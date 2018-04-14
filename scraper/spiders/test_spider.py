@@ -11,7 +11,7 @@ class Spider(scrapy.Spider):
     name = "test_spider"
 
     # 这里放你要爬取的网站的ＵＲＬ
-    start_urls = ["https://readhub.me", ]
+    start_urls = ["https://www.jianshu.com", ]
 
     # 初始化爬虫,先获取爬取规则
     def __init__(self, **kwargs):
@@ -19,15 +19,15 @@ class Spider(scrapy.Spider):
 
         self.rule = Rule()
         self.rule.url = self.start_urls[0]
-        self.rule.loop_rule = "//div[contains(@class, 'topicItem')]"
-        self.rule.title_rule = "h2/span/text()"
-        self.rule.content_rule = "div/div[contains(@class, 'bp-pure')]/text()"
-        self.rule.type_rule = "div/div/div/div/div/div/span/a/text()"
-        self.rule.url_rule = "div/div/div/div/div/a/@href"
-        self.rule.table_name = "readhub"
+        self.rule.loop_rule = "//li[contains (@id,'note')]"
+        self.rule.title_rule = "div/a/h2/text()"
+        self.rule.content_rule = "a/div/span/text()"
+        self.rule.type_rule = "a/div/div/text()"
+        self.rule.url_rule = "a[@class='contentHerf']/@href"
+        self.rule.table_name = "jianshu"
 
         # 请帮我放到数据库
-        dbHelper.setRule(self.rule)
+        # dbHelper.setRule(self.rule)
 
     # 这里是如何处理你爬取回来的信息
     def parse(self, response):
