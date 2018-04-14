@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS _user (
   id      BIGINT(7) NOT NULL AUTO_INCREMENT,
   name    VARCHAR(50),
-  cteated TIMESTAMP          DEFAULT CURRENT_TIMESTAMP,
+  created TIMESTAMP          DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 );
 
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS _rule (
   url_rule     VARCHAR(200)          DEFAULT '//null',
   type_rule    VARCHAR(200)          DEFAULT '//null',
 
-  cteated      TIMESTAMP             DEFAULT CURRENT_TIMESTAMP,
+  created      TIMESTAMP             DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   FOREIGN KEY (author) REFERENCES _user (id)
 );

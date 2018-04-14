@@ -6,14 +6,15 @@ from scraper.helpers.dbhelper import TestDBHelper
 
 
 # 测试用的爬虫
-class Spider(scrapy.Spider):
-    name = "spider"
+class LlssSpider(scrapy.Spider):
+    name = "llss_spider"
+    i = 1
 
     # 这里放你要爬取的网站的ＵＲＬ
     start_urls = ["", ]
 
     # 初始化爬虫,先获取爬取规则
-    def __init__(self, rule_id=12, **kwargs):
+    def __init__(self, rule_id=10, **kwargs):
         super().__init__(**kwargs)
 
         dbHelper = TestDBHelper()
@@ -57,3 +58,8 @@ class Spider(scrapy.Spider):
             item['url'] = str(url)
 
             yield item
+
+        self.i = self.i + 1
+        next_page = "https://www.llss.pw/wp/page/" + str(self.i)
+        next_page = response.urljoin(next_page)
+        yield scrapy.Request(next_page, callback=self.parse)
