@@ -13,7 +13,7 @@ class Spider(scrapy.Spider):
     start_urls = ["", ]
 
     # 初始化爬虫,先获取爬取规则
-    def __init__(self, rule_id=21, **kwargs):
+    def __init__(self, rule_id=22, **kwargs):
         super().__init__(**kwargs)
 
         dbHelper = TestDBHelper()
@@ -37,7 +37,7 @@ class Spider(scrapy.Spider):
         talbe_name = self.rule.table_name
         title = article.xpath(self.rule.title_rule).extract_first()
         type = article.xpath(self.rule.type_rule).extract()
-        content = response.xpath("string(//div[@class='post-text'])").extract()
+        content = response.xpath(self.rule.content_rule).extract()
 
         try:
             type = str(reduce(lambda x, y: str(x) + " " + str(y), type))
