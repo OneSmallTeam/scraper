@@ -7,3 +7,4 @@ class Rule():
     content_rule = ""
     url_rule = ""
     type_rule = ""
+    type = ""

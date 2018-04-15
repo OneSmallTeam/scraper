@@ -5,7 +5,7 @@ from scraper.items import ArticleItem
 from scraper.helpers.dbhelper import TestDBHelper
 
 
-# 测试用的爬虫
+# 神社专用的爬虫
 class LlssSpider(scrapy.Spider):
     name = "llss_spider"
     i = 1
