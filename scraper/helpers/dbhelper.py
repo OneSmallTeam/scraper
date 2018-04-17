@@ -111,8 +111,8 @@ class TestDBHelper():
     def testCreateTable(self, table_name):
         sql = "create table IF NOT EXISTS %s(" \
               "id int primary key auto_increment," \
-              "title varchar(100) unique ," \
-              "content varchar(2000)," \
+              "title varchar(500) unique ," \
+              "content TEXT," \
               "url varchar(200)," \
               "type varchar(50)," \
               "created TIMESTAMP DEFAULT CURRENT_TIMESTAMP" \

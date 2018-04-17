@@ -13,7 +13,7 @@ class Spider(scrapy.Spider):
     start_urls = ["", ]
 
     # 初始化爬虫,先获取爬取规则
-    def __init__(self, rule_id=22, **kwargs):
+    def __init__(self, rule_id=25, **kwargs):
         super().__init__(**kwargs)
 
         dbHelper = TestDBHelper()
