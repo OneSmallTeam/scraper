@@ -27,7 +27,7 @@ class Spider(scrapy.Spider):
         self.rule.type = "article_no_content"
 
         # 请帮我放到数据库
-        dbHelper.setRule(self.rule)
+        # dbHelper.setRule(self.rule)
 
         self.parses = dict(
             article=self.article_parse,
@@ -37,8 +37,8 @@ class Spider(scrapy.Spider):
 
     # 这里是如何处理你爬取回来的信息
     def parse(self, response):
-        pass
-        # yield scrapy.Request(self.rule.url, callback=self.parses[self.rule.type])
+        # pass
+        yield scrapy.Request(self.rule.url, callback=self.parses[self.rule.type])
 
     # 关于图片的爬取
     def picture_parse(self, response):
@@ -71,6 +71,9 @@ class Spider(scrapy.Spider):
 
         if not content:
             return
+
+        if len(content) > 1800:
+            content = content[:1800] + "..."
 
         yield {
             'table_name': str(talbe_name),
