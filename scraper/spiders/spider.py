@@ -13,7 +13,7 @@ class Spider(scrapy.Spider):
     start_urls = ["", ]
 
     # 初始化爬虫,先获取爬取规则
-    def __init__(self, rule_id=25, **kwargs):
+    def __init__(self, rule_id=33, **kwargs):
         super().__init__(**kwargs)
 
         dbHelper = TestDBHelper()
@@ -54,6 +54,9 @@ class Spider(scrapy.Spider):
             content = str(reduce(lambda x, y: str(x) + str(y), content))
         except Exception  as e:
             print(e)
+
+        if not content:
+            return
 
         item = ArticleItem()
         item['table_name'] = str(talbe_name)

@@ -10,6 +10,7 @@
           <option value="str.title_rule" />
           <option value="str.content_rule" />
           <option value="str.type_rule" />
+          <option value="googlemaps.client.Client.*" />
         </list>
       </option>
     </inspection_tool>

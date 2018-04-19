@@ -10,7 +10,7 @@ class Spider(scrapy.Spider):
     name = "test_spider"
 
     # 这里放你要爬取的网站的ＵＲＬ
-    start_urls = ["https://linux.cn", ]
+    start_urls = ["http://renjian.163.com", ]
 
     # 初始化爬虫,先获取爬取规则
     def __init__(self, **kwargs):
@@ -18,26 +18,31 @@ class Spider(scrapy.Spider):
 
         self.rule = Rule()
         self.rule.url = self.start_urls[0]
-        self.rule.loop_rule = "//ul[@class='article-list leftpic']/li"
-        self.rule.title_rule = "h2/span[@class='title']/a/text()"
-        self.rule.content_rule = "string(//div[@id='article_content'])"
-        self.rule.type_rule = "h2/span[@class='y cat']/a/text()"
-        self.rule.url_rule = "h2/span[@class='title']/a/@href"
-        self.rule.table_name = "linux_cn"
+        self.rule.loop_rule = "//h3/a[@class='tit']"
+        self.rule.title_rule = "text()"
+        self.rule.content_rule = "//div[@id='endText']/p/text()"
+        self.rule.type_rule = "null"
+        self.rule.url_rule = "@href"
+        self.rule.table_name = "renjian"
         self.rule.type = "article_no_content"
 
         # 请帮我放到数据库
-        # dbHelper.setRule(self.rule)
+        dbHelper.setRule(self.rule)
 
         self.parses = dict(
             article=self.article_parse,
-            article_no_content=self.article_no_content_parse
+            article_no_content=self.article_no_content_parse,
+            picture=self.picture_parse
         )
 
     # 这里是如何处理你爬取回来的信息
     def parse(self, response):
-        # pass
-        yield scrapy.Request(self.rule.url, callback=self.parses[self.rule.type])
+        pass
+        # yield scrapy.Request(self.rule.url, callback=self.parses[self.rule.type])
+
+    # 关于图片的爬取
+    def picture_parse(self, response):
+        pass
 
     # 处理内容的parse
     def content_parse(self, response):
@@ -63,6 +68,9 @@ class Spider(scrapy.Spider):
             content = str(reduce(lambda x, y: str(x) + str(y), content))
         except Exception  as e:
             print(e)
+
+        if not content:
+            return
 
         yield {
             'table_name': str(talbe_name),
