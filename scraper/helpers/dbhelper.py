@@ -111,8 +111,8 @@ class TestDBHelper():
     def testCreateTable(self, table_name):
         sql = "create table IF NOT EXISTS %s(" \
               "id int primary key auto_increment," \
-              "title varchar(100) unique ," \
-              "content varchar(2000)," \
+              "title varchar(500) unique ," \
+              "content TEXT," \
               "url varchar(200)," \
               "type varchar(50)," \
               "created TIMESTAMP DEFAULT CURRENT_TIMESTAMP" \
@@ -139,6 +139,7 @@ class TestDBHelper():
         rule.content_rule = rule_info[6]
         rule.url_rule = rule_info[7]
         rule.type_rule = rule_info[8]
+        rule.type = rule_info[10]
 
         self.testCreateTable(rule.table_name)
 
@@ -147,8 +148,8 @@ class TestDBHelper():
     # 获得具体的爬取规则字典
     def setRule(self, rule):
         sql = "insert into _rule (" \
-              "url, table_name, loop_rule, title_rule, content_rule, url_rule, type_rule" \
-              ") values(%s,%s,%s,%s,%s,%s,%s)"
+              "url, table_name, loop_rule, title_rule, content_rule, url_rule, type_rule,type" \
+              ") values(%s,%s,%s,%s,%s,%s,%s,%s)"
 
         params = (
             # 将爬取规则放到规则对象
@@ -159,6 +160,7 @@ class TestDBHelper():
             rule.content_rule,
             rule.url_rule,
             rule.type_rule,
+            rule.type
         )
         self.dbHelper.insert(sql, *params)
 
