@@ -72,8 +72,8 @@ class Spider(scrapy.Spider):
         if not content:
             return
 
-        if len(content) > 1800:
-            content = content[:1800] + "..."
+        if len(content) > 800:
+            content = content[:800] + "..."
 
         yield {
             'table_name': str(talbe_name),
@@ -102,7 +102,6 @@ class Spider(scrapy.Spider):
     # 第一类普通的文章
     def article_parse(self, response):
         articles = response.xpath(self.rule.loop_rule)
-        # print(articles.extract())
 
         for article in articles:
             url = article.xpath(self.rule.url_rule).extract_first()

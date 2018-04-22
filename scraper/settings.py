@@ -106,6 +106,6 @@ MYSQL_DBNAME = 'info_db'
 
 # 关于数据库的配置
 MYSQL_HOST = 'niracler.com'
-MYSQL_USER = 'root'
+MYSQL_USER = 'team'
 MYSQL_PASSWD = '12345678'
 MYSQL_PORT = 3306
