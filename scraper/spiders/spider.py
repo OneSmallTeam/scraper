@@ -58,8 +58,8 @@ class Spider(scrapy.Spider):
         if not content:
             return
 
-        if len(content) > 1800:
-            content = content[:1800] + "..."
+        if len(content) > 800:
+            content = content[:800] + "..."
 
         item = ArticleItem()
         item['table_name'] = str(talbe_name)
